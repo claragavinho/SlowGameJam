@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CameraControl : MonoBehaviour
+{
+    public Transform player;  // Player's transform
+    public float offsetY = 2f;  // Vertical offset from the player
+    public float smoothSpeed = 5f;  // Smoothing speed
+
+    private void FixedUpdate()
+    {
+        Vector3 desiredPosition = new Vector3(transform.position.x, player.position.y + offsetY, transform.position.z);
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        transform.position = smoothedPosition;
+    }
+}

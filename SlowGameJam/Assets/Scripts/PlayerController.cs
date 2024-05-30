@@ -5,38 +5,48 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float _speed = 1.5f;
-    //[SerializeField] private float _height;
 
-    private PInputManager _playerInput;
+    private Rigidbody2D PlayerRb;
+    [SerializeField] private float jumpforce;
+    [SerializeField] private float Speed;
 
-    private Rigidbody2D _rigidbody;
-    private Vector2 dir;
-
-    void Start()
+    private bool isGrounded = true;
+    private void Start()
     {
-       _rigidbody = GetComponent<Rigidbody2D>(); 
-       _playerInput = GetComponent<PInputManager>();
+        PlayerRb = GetComponent<Rigidbody2D>();
     }
-
-    // Update is called once per frame
-    void FixedUpdate()
+    private void Update()
     {
-        Movement(_playerInput.Movement);
-    }
-
-    public void Movement(Vector2 direction)
-    {
-        dir = direction;
-        _rigidbody.velocity += dir * _speed * Time.fixedDeltaTime;
-        
-        if (direction == Vector2.zero) 
-        { 
-            _rigidbody.velocity = Vector2.zero;
+        if (Input.GetKeyDown(KeyCode.Space) & isGrounded)
+        {
+            Jump();
         }
+        float MoveInput = Input.GetAxis("Horizontal");
+        Move(MoveInput);
     }
-    public void Jump()
+    private void Jump()
     {
         Debug.Log("Jump");
+        PlayerRb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
+        isGrounded = false;// stops from double jumping 
+    }
+    private void Move(float MoveInput)// Player Movement
+    {
+        Debug.Log("Move");
+        PlayerRb.velocity = new Vector2(MoveInput * Speed, PlayerRb.velocity.y);
+    }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Branch"))
+        {
+            Debug.Log("Collision Detected");
+            isGrounded = true;
+        }
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            Debug.Log("On Ground");
+            isGrounded = true;
+        }
+
     }
 }
