@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip levelCompleteSound;
     public AudioClip snakeSound;
     public AudioClip branchSound;
+    public AudioClip breakSound;
     public AudioClip dieSound;
 
     //Singleton pattern for easy access
@@ -69,6 +70,10 @@ public class AudioManager : MonoBehaviour
     public void PlayBranchSound()
     {
         audioSource.PlayOneShot(branchSound);
+    }
+    public void PlayBreakSound()
+    {
+        audioSource.PlayOneShot(breakSound);
     }
 
     public void PlayDieSound()
