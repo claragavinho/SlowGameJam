@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
 
     private Rigidbody2D PlayerRb;
+    private SpriteRenderer PlayerSp;
+    private Animator PlayerAn;
     [SerializeField] private float jumpforce;
     [SerializeField] private float Speed;
 
@@ -14,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         PlayerRb = GetComponent<Rigidbody2D>();
+        PlayerSp = GetComponent<SpriteRenderer>();
+        PlayerAn = GetComponent<Animator>();
     }
     private void Update()
     {
@@ -23,12 +27,18 @@ public class PlayerController : MonoBehaviour
         }
         float MoveInput = Input.GetAxis("Horizontal");
         Move(MoveInput);
+
+        if (MoveInput > 0) //sprite flip hack
+            PlayerSp.flipX = true;
+        else
+            PlayerSp.flipX = false;
     }
     private void Jump()
     {
         Debug.Log("Jump");
         PlayerRb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
         isGrounded = false;// stops from double jumping 
+        PlayerAn.enabled = true;
     }
     private void Move(float MoveInput)// Player Movement
     {
@@ -41,11 +51,13 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Collision Detected");
             isGrounded = true;
+            PlayerAn.enabled = false;
         }
         if (other.gameObject.CompareTag("Ground"))
         {
             Debug.Log("On Ground");
             isGrounded = true;
+            PlayerAn.enabled = false;
         }
 
     }
