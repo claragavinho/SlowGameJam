@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
         PlayerRb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
         isGrounded = false;// stops from double jumping 
         PlayerAn.enabled = true;
+        AudioManager.Instance.PlayJumpSound();
     }
     private void Move(float MoveInput)// Player Movement
     {
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Collision Detected");
             isGrounded = true;
             PlayerAn.enabled = false;
+            AudioManager.Instance.PlayLandSound();
         }
         if (other.gameObject.CompareTag("Ground"))
         {
