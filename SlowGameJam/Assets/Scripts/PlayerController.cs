@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("On Ground");
             isGrounded = true;
             PlayerAn.enabled = false;
+            AudioManager.Instance.PlayLandSound();
         }
 
     }

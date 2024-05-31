@@ -141,10 +141,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35888f56c4276ef449a4729b085766a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinSound: {fileID: 0}
+  coinSound: {fileID: 8300000, guid: d18f9e477e39b91418094d9c0b6440a1, type: 3}
   jumpSound: {fileID: 8300000, guid: ddf8f6ed659553b45ad7ebade44c1b17, type: 3}
   landSound: {fileID: 8300000, guid: 996685e540f7e36448247a3745445ae2, type: 3}
-  levelCompleteSound: {fileID: 0}
+  levelCompleteSound: {fileID: 8300000, guid: be1505f65d201a4439af3d2d82caaa16, type: 3}
   snakeSound: {fileID: 8300000, guid: a648f238bdfaa844297af1f52f2b4854, type: 3}
   branchSound: {fileID: 0}
   breakSound: {fileID: 8300000, guid: 132cd1c528639fb48b06c48aa04da10a, type: 3}

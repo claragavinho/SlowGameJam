@@ -500,10 +500,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
-    - target: {fileID: 876883236485164537, guid: 984e790737027b040bda0d6b2423578d, type: 3}
-      propertyPath: m_Volume
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 1617685434932622898, guid: 984e790737027b040bda0d6b2423578d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.7434501
