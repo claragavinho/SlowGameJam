@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BranchSpawner : MonoBehaviour
@@ -56,27 +57,35 @@ public class BranchSpawner : MonoBehaviour
             level = 2;
         else if (LastBranchY == branchesPerLevel[1])
             level = 3;
-        
+        GameObject currentBranch; 
         switch (level)
         {
             case 1:
-                Instantiate(branchprefabs[0], SpawnPosition, Quaternion.identity);
+              currentBranch =  Instantiate(branchprefabs[0], SpawnPosition, Quaternion.identity);
                 
                 break;
             case 2:
-                Instantiate(branchprefabs[Random.Range(0, branchprefabs.Length)], SpawnPosition, Quaternion.identity);
+                currentBranch = Instantiate(branchprefabs[Random.Range(0, branchprefabs.Length)], SpawnPosition, Quaternion.identity);
 
                 break;
             case 3:
-                Instantiate(branchprefabs[Random.Range(0, branchprefabs.Length)], SpawnPosition, Quaternion.identity);
+                currentBranch = Instantiate(branchprefabs[Random.Range(0, branchprefabs.Length)], SpawnPosition, Quaternion.identity);
                 //spawn snake
                 break;
+                default:
+                currentBranch = null;
+                break;
 
+                float x = 5;
+                float y = 5;
+                x = Mathf.Lerp(x, y, 0.5f);
         }
         //Instantiate(branchprefab, SpawnPosition, Quaternion.identity);
         LastBranchY += branchSpawnInterval;
 
         // Alternate between left and right
         spawnLeft = !spawnLeft;
+        if(spawnLeft && currentBranch != null) 
+        currentBranch.GetComponent<SpriteRenderer>().flipX = true;
     }
 }
