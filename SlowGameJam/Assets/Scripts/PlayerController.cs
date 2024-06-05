@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private Animator PlayerAn;
     [SerializeField] private float jumpforce;
     [SerializeField] private float Speed;
+    //public ScoreManager scoreMn;
 
     private bool isGrounded = true;
     private void Start()
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
         PlayerRb = GetComponent<Rigidbody2D>();
         PlayerSp = GetComponent<SpriteRenderer>();
         PlayerAn = GetComponent<Animator>();
+        //scoreMn = FindObjectOfType<ScoreManager>();
     }
     private void Update()
     {

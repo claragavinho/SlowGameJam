@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 155596685099098149}
   - component: {fileID: 2369386696429681271}
   - component: {fileID: 2707003085566062235}
-  - component: {fileID: 5669072814153476538}
+  - component: {fileID: 5148561468831941551}
+  - component: {fileID: 1213145914017455699}
+  - component: {fileID: 7642940991229186116}
   m_Layer: 0
-  m_Name: Branch
+  m_Name: BranchBreakable
   m_TagString: Branch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,7 +175,7 @@ PolygonCollider2D:
       - {x: 0.5184078, y: -0.061314642}
       - {x: 0.515625, y: 0.074834526}
   m_UseDelaunayMesh: 0
---- !u!251 &5669072814153476538
+--- !u!251 &5148561468831941551
 PlatformEffector2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,3 +194,40 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!95 &1213145914017455699
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3627343421120014580}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d07395a7dd1fdae448611ceec1f75b5d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7642940991229186116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3627343421120014580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9222baceb1b139d41a103e8350867e28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  branchCollider: {fileID: 2707003085566062235}
+  spriteRend: {fileID: 155596685099098149}
+  branchAnim: {fileID: 1213145914017455699}
+  animTime: 2
