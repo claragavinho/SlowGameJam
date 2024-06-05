@@ -14,7 +14,7 @@ public class BranchSpawner : MonoBehaviour
     public float leftX = -2f;
     public float rightX = 2f;
 
-    private float LastBranchY;
+    public float LastBranchY;
     private bool spawnLeft = true;
     private int level;
     private int maxSpawn;
@@ -29,7 +29,7 @@ public class BranchSpawner : MonoBehaviour
         if (Camera.main.transform.position.y + branchSpawnHeight > LastBranchY)
         {
             SpawnBranch();
-        }
+        } 
     }
     void SpawnInitialBranch()
     {
@@ -57,6 +57,7 @@ public class BranchSpawner : MonoBehaviour
             level = 2;
         else if (LastBranchY == branchesPerLevel[1])
             level = 3;
+
         GameObject currentBranch; 
         switch (level)
         {
@@ -76,12 +77,10 @@ public class BranchSpawner : MonoBehaviour
                 currentBranch = null;
                 break;
 
-                float x = 5;
-                float y = 5;
-                x = Mathf.Lerp(x, y, 0.5f);
+               
         }
         //Instantiate(branchprefab, SpawnPosition, Quaternion.identity);
-        LastBranchY += branchSpawnInterval;
+        LastBranchY += branchSpawnInterval;               
 
         // Alternate between left and right
         spawnLeft = !spawnLeft;
