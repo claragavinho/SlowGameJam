@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5066720874629212774}
   - component: {fileID: 7881859692463028375}
   - component: {fileID: -6876238163858026483}
+  - component: {fileID: 6093583693454968565}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Untagged
@@ -152,3 +153,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 2.125}
   m_EdgeRadius: 0
+--- !u!114 &6093583693454968565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360231303868401513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05ec378db78c4994ca6007bcff91fcb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snakeAnim: {fileID: 7881859692463028375}
+  snakeAnimTime: 2
+  lerpDistance: {x: 0, y: 10, z: 0}

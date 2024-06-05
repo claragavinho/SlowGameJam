@@ -15,7 +15,7 @@ public class BranchSpawner : MonoBehaviour
 
     private float LastBranchY;
     private bool spawnLeft = true;
-    private int level;
+    public int level;
     private int maxSpawn;
 
     private void Start()

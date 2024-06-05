@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Snake : MonoBehaviour
 {
-    public Animator snakeAnim;
     GameObject snake;
-    [SerializeField] float snakeAnimTime;
 
     Vector3 startPos;
     Vector3 endPos;
@@ -15,7 +13,7 @@ public class Snake : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-       //this.gameObject.SetActive(false);
+       this.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -23,19 +21,24 @@ public class Snake : MonoBehaviour
     {
         
     }
+
     public void SpawnSnake()
     {
-        //this.gameObject.SetActive(true);
-        snake = Instantiate(this.gameObject);
-        StartCoroutine("SnakeBehavior");
-    }
-    IEnumerator SnakeBehavior()
-    {
-        snakeAnim.Play("SnakeAnimation");
-        yield return new WaitForSeconds(snakeAnimTime);
+        this.gameObject.SetActive(true);
+
         startPos = snake.transform.position;
         endPos = startPos + lerpDistance;
 
-        snake.transform.position = Vector3.Lerp(startPos, endPos, Time.fixedDeltaTime);
+        snake.transform.localPosition = Vector3.Lerp(startPos, endPos, Time.fixedDeltaTime);
+        //snake = Instantiate(this.gameObject);
     }
+    /*IEnumerator SnakeBehavior()
+    {
+        snakeAnim.Play("SnakeAnimation");
+        yield return new WaitForSeconds(snakeAnimTime);
+        startPos = snake.transform.position;    
+        endPos = startPos + lerpDistance;
+
+        snake.transform.localPosition = Vector3.Lerp(startPos, endPos, Time.fixedDeltaTime);
+    }*/
 }
