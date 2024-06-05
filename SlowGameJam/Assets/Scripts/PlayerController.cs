@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Animator PlayerAn;
     [SerializeField] private float jumpforce;
     [SerializeField] private float Speed;
-    public ScoreManager scoreMn;
+    //public ScoreManager scoreMn;
 
     private bool isGrounded = true;
     private void Start()
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
         PlayerRb = GetComponent<Rigidbody2D>();
         PlayerSp = GetComponent<SpriteRenderer>();
         PlayerAn = GetComponent<Animator>();
-        scoreMn = FindObjectOfType<ScoreManager>();
+        //scoreMn = FindObjectOfType<ScoreManager>();
     }
     private void Update()
     {
@@ -54,7 +54,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Collision Detected");
             isGrounded = true;
             PlayerAn.enabled = false;
-            scoreMn.UpdateScore();
         }
         if (other.gameObject.CompareTag("Ground"))
         {

@@ -5,7 +5,9 @@ using UnityEngine;
 public class BranchSpawner : MonoBehaviour
 {
 
-    public GameObject branchprefab;
+    //public GameObject branchprefab;
+    [SerializeField] int[] branchesPerLevel;
+    public GameObject[] branchprefabs;
     public float branchSpawnInterval = 2f;
     public float branchSpawnHeight = 6.5f;
     public float leftX = -2f;
@@ -13,9 +15,12 @@ public class BranchSpawner : MonoBehaviour
 
     private float LastBranchY;
     private bool spawnLeft = true;
+    private int level;
+    private int maxSpawn;
 
     private void Start()
     {
+        level = 1;
         SpawnInitialBranch();
     }
     private void Update()
@@ -46,7 +51,29 @@ public class BranchSpawner : MonoBehaviour
         }
 
         Vector3 SpawnPosition = new Vector3(xpos, LastBranchY + branchSpawnHeight, 0);
-        Instantiate(branchprefab, SpawnPosition, Quaternion.identity);
+
+        if (LastBranchY == branchesPerLevel[0])
+            level = 2;
+        else if (LastBranchY == branchesPerLevel[1])
+            level = 3;
+        
+        switch (level)
+        {
+            case 1:
+                Instantiate(branchprefabs[0], SpawnPosition, Quaternion.identity);
+                
+                break;
+            case 2:
+                Instantiate(branchprefabs[Random.Range(0, branchprefabs.Length)], SpawnPosition, Quaternion.identity);
+
+                break;
+            case 3:
+                Instantiate(branchprefabs[Random.Range(0, branchprefabs.Length)], SpawnPosition, Quaternion.identity);
+                //spawn snake
+                break;
+
+        }
+        //Instantiate(branchprefab, SpawnPosition, Quaternion.identity);
         LastBranchY += branchSpawnInterval;
 
         // Alternate between left and right

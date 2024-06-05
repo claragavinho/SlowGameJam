@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 155596685099098149}
   - component: {fileID: 2369386696429681271}
   - component: {fileID: 2707003085566062235}
-  - component: {fileID: 5669072814153476538}
+  - component: {fileID: 5148561468831941551}
   m_Layer: 0
-  m_Name: Branch
+  m_Name: BranchBreakable
   m_TagString: Branch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,7 +173,7 @@ PolygonCollider2D:
       - {x: 0.5184078, y: -0.061314642}
       - {x: 0.515625, y: 0.074834526}
   m_UseDelaunayMesh: 0
---- !u!251 &5669072814153476538
+--- !u!251 &5148561468831941551
 PlatformEffector2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
