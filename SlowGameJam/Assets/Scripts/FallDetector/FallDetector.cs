@@ -24,6 +24,7 @@ public class FallDetector : MonoBehaviour
             Debug.Log("Player_Destroyed");
             Destroy(other.gameObject);
             gameOver.Setup();
+            AudioManager.Instance.PlayDieSound();
         }
        
         if (other.CompareTag("Branch"))
