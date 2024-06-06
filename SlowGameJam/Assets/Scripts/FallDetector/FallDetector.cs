@@ -6,6 +6,7 @@ public class FallDetector : MonoBehaviour
 {
     [SerializeField]private float offset =-3;
     private BranchSpawner branchSpawner;
+    public GameOver gameOver;
     private void Start()
     {
         branchSpawner = FindObjectOfType<BranchSpawner>();
@@ -22,6 +23,7 @@ public class FallDetector : MonoBehaviour
         {
             Debug.Log("Player_Destroyed");
             Destroy(other.gameObject);
+            gameOver.Setup();
         }
        
         if (other.CompareTag("Branch"))
