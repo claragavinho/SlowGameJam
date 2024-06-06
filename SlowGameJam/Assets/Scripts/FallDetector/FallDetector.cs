@@ -20,7 +20,16 @@ public class FallDetector : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Player_Destroyed");
             Destroy(other.gameObject);
         }
+       
+        if (other.CompareTag("Branch"))
+        {
+            Debug.Log("BranchDestroyed");
+            Destroy(other.gameObject); 
+        }
+       
+        
     }
 }
