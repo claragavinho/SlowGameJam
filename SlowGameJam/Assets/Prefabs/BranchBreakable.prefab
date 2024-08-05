@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1213145914017455699}
   - component: {fileID: 7642940991229186116}
   - component: {fileID: 6085755955272261078}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BranchBreakable
   m_TagString: Branch
   m_Icon: {fileID: 0}

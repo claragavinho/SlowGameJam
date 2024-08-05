@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     //public ScoreManager scoreMn;
 
     private bool isGrounded = true;
+
     private void Start()
     {
         PlayerRb = GetComponent<Rigidbody2D>();
@@ -23,7 +24,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) & isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             Jump();
         }
@@ -65,5 +66,12 @@ public class PlayerController : MonoBehaviour
             AudioManager.Instance.PlayLandSound();
         }
 
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Branch"))
+        {
+            isGrounded = false;
+        }
     }
 }
