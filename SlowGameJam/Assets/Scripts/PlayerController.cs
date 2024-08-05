@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         Debug.Log("Jump");
+        PlayerRb.velocity = Vector2.zero; //resets velocity to 0 before jumping
         PlayerRb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
         isGrounded = false;// stops from double jumping 
         PlayerAn.enabled = true;

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Snake : MonoBehaviour
 {
-    GameObject snake;
-
     Vector3 startPos;
     Vector3 endPos;
     public Vector3 lerpDistance = new Vector3(0, 10, 0);
@@ -26,10 +24,10 @@ public class Snake : MonoBehaviour
     {
         this.gameObject.SetActive(true);
 
-        startPos = snake.transform.position;
+        startPos = transform.position;
         endPos = startPos + lerpDistance;
 
-        snake.transform.localPosition = Vector3.Lerp(startPos, endPos, Time.fixedDeltaTime);
+        transform.localPosition = Vector3.Lerp(startPos, endPos, Time.fixedDeltaTime);
         //snake = Instantiate(this.gameObject);
     }
     /*IEnumerator SnakeBehavior()
