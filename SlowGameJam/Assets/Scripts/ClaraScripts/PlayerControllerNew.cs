@@ -11,18 +11,14 @@ public class PlayerControllerNew : MonoBehaviour
     [SerializeField] private float Speed;
 
     [SerializeField] private LayerMask platformLayerMask;
-    private bool isGrounded = true;
-    BoxCollider2D playerCollider;
-    float heightTest = .01f;
+    public float heightTest = 0.5f;
+    public Vector2 boxSize;
 
     private void Start()
     {
         PlayerRb = GetComponent<Rigidbody2D>();
         PlayerSp = GetComponent<SpriteRenderer>();
         PlayerAn = GetComponent<Animator>();
-
-        playerCollider = GetComponent<BoxCollider2D>();
-        //layerMaskGround = LayerMask.GetMask("Ground");
     }
     private void Update()
     {
@@ -43,7 +39,6 @@ public class PlayerControllerNew : MonoBehaviour
         Debug.Log("Jump");
         PlayerRb.velocity = Vector2.zero; //resets velocity to 0 before jumping
         PlayerRb.AddForce(new Vector2(0, jumpforce), ForceMode2D.Impulse);
-        IsGrounded();
         //isGrounded = false;// stops from double jumping 
         PlayerAn.enabled = true;
         AudioManager.Instance.PlayJumpSound();
@@ -53,37 +48,19 @@ public class PlayerControllerNew : MonoBehaviour
         Debug.Log("Move");
         PlayerRb.velocity = new Vector2(MoveInput * Speed, PlayerRb.velocity.y);
     }
-    //private void OnCollisionEnter2D(Collision2D other)
-    //{
-    //    if (other.gameObject.CompareTag("Branch"))
-    //    {
-    //        Debug.Log("Collision Detected");
-    //        IsGrounded();
-    //        PlayerAn.enabled = false;
-    //        AudioManager.Instance.PlayLandSound();
-    //    }
-    //    if (other.gameObject.CompareTag("Ground"))
-    //    {
-    //        Debug.Log("On Ground");
-    //        IsGrounded();
-    //        PlayerAn.enabled = false;
-    //        AudioManager.Instance.PlayLandSound();
-    //    }
-
     private bool IsGrounded()
     {
-        RaycastHit2D hit = Physics2D.Raycast(playerCollider.bounds.center, Vector2.down, playerCollider.bounds.extents.y + heightTest, platformLayerMask);
-        Color rayColor;
-        if (hit.collider != null)
+        if(Physics2D.BoxCast(transform.position,boxSize,0,-transform.up,heightTest,platformLayerMask))
         {
-            rayColor = Color.green;
+            return true;
         }
-        else
+        else 
         {
-            rayColor = Color.red;
+            return false;
         }
-        Debug.DrawRay(playerCollider.bounds.center, Vector2.down * (playerCollider.bounds.extents.y + heightTest));
-        //bool isGrounded = hit.collider != null;
-        return isGrounded;
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(transform.position-transform.up * heightTest, boxSize);
     }
 }
