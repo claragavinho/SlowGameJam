@@ -1154,11 +1154,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac31e2c22d448249853fa76c0ab516a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpforce: 8
+  jumpforce: 6
   Speed: 5
+  powerUpAmount: 5
   platformLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  heightTest: 0.5
+  boxSize: {x: 0, y: 0}
 --- !u!1 &1137833461
 GameObject:
   m_ObjectHideFlags: 0
