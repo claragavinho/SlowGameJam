@@ -7,10 +7,11 @@ public class PlayerControllerNew : MonoBehaviour
     private Rigidbody2D PlayerRb;
     private SpriteRenderer PlayerSp;
     private Animator PlayerAn;
-    [SerializeField] private float jumpforce;
+    [SerializeField] public float jumpforce;
     [SerializeField] private float Speed;
+    [SerializeField] private float powerUpAmount;
 
-    [SerializeField] private LayerMask platformLayerMask;
+    [SerializeField] private LayerMask platformLayerMask; 
     public float heightTest = 0.5f;
     public Vector2 boxSize;
 
@@ -62,5 +63,17 @@ public class PlayerControllerNew : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position-transform.up * heightTest, boxSize);
+    }
+    public void JumpPU()
+    {
+        jumpforce += powerUpAmount;
+        GetComponent<SpriteRenderer>().color = Color.blue;
+        StartCoroutine(ResetPowerUp());
+    }
+    private IEnumerator ResetPowerUp()
+    {
+        yield return new WaitForSeconds(5);
+        jumpforce -= powerUpAmount;
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 }
