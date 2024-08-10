@@ -1149,19 +1149,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1062339490}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ac31e2c22d448249853fa76c0ab516a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpforce: 6
+  jumpforce: 7
   Speed: 5
   powerUpAmount: 5
   platformLayerMask:
     serializedVersion: 2
     m_Bits: 8
   heightTest: 0.5
-  boxSize: {x: 0, y: 0}
+  boxSize: {x: 0.92, y: 0.15}
 --- !u!1 &1137833461
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,6 +1517,57 @@ MonoBehaviour:
   player: {fileID: 58953504}
   offsetY: 2
   smoothSpeed: 5
+--- !u!1 &1480758806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1480758808}
+  - component: {fileID: 1480758807}
+  m_Layer: 0
+  m_Name: BuffSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1480758807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480758806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 738203dd78269f240b8d947eb6bc3c0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffprefabs:
+  - {fileID: 5845739897669081335, guid: 41a4e0a3170b74344b33085481496ca0, type: 3}
+  spawnInterval: 2
+  spawnHeight: 6.5
+  leftX: -2
+  rightX: 2
+  LastBuffY: 0
+--- !u!4 &1480758808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1480758806}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.57342917, y: -0.05227287, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1515167588
 GameObject:
   m_ObjectHideFlags: 0
@@ -2215,6 +2266,7 @@ SceneRoots:
   - {fileID: 7642622486172539331}
   - {fileID: 1137833463}
   - {fileID: 1867891281}
+  - {fileID: 1480758808}
   - {fileID: 1515167590}
   - {fileID: 2108131712}
   - {fileID: 1157816889075557738}
