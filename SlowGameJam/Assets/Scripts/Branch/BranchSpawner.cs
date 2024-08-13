@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BranchSpawner : MonoBehaviour
 {
@@ -16,12 +17,20 @@ public class BranchSpawner : MonoBehaviour
 
     public float LastBranchY;
     private bool spawnLeft = true;
-    public int level;
+    private Levels CurrentLevel;
+    //public int level;
     private int maxSpawn;
+    private int currentBranchHeight;
+
+    GameObject spawnedBranch;
+    Vector3 SpawnPosition;
+    GameObject branchToSpawn;
+
+    public UnityEvent<Levels> OnLevelChanged = new ();
 
     private void Start()
     {
-        level = 1;
+        OnLevelChanged.Invoke(Levels.Level1);
         SpawnInitialBranch();
     }
     private void Update()
@@ -29,7 +38,13 @@ public class BranchSpawner : MonoBehaviour
         if (Camera.main.transform.position.y + branchSpawnHeight > LastBranchY)
         {
             SpawnBranch();
-        } 
+        }
+        if (currentBranchHeight == branchesPerLevel[0] && CurrentLevel != Levels.Level2)
+            OnLevelChanged.Invoke(Levels.Level2);
+        //level = 2;
+        else if (currentBranchHeight == branchesPerLevel[1] && CurrentLevel != Levels.Level3)
+            OnLevelChanged.Invoke(Levels.Level3);
+        //level = 3;
     }
     void SpawnInitialBranch()
     {
@@ -41,6 +56,18 @@ public class BranchSpawner : MonoBehaviour
 
     void SpawnBranch()
     {
+        SetspawnedBranch(branchToSpawn);
+        //Instantiate(branchprefab, SpawnPosition, Quaternion.identity);
+        LastBranchY += branchSpawnInterval;
+        currentBranchHeight++; 
+
+        // Alternate between left and right
+        spawnLeft = !spawnLeft;
+        if(spawnLeft && spawnedBranch != null) 
+        spawnedBranch.GetComponent<SpriteRenderer>().flipX = true;
+    }
+    private void SetspawnedBranch(GameObject branchPrefabObj)
+    {
         float xpos;
         if (spawnLeft)
         {
@@ -51,40 +78,28 @@ public class BranchSpawner : MonoBehaviour
             xpos = rightX;
         }
 
-        Vector3 SpawnPosition = new Vector3(xpos, LastBranchY + branchSpawnHeight, 0);
+        SpawnPosition = new Vector3(xpos, LastBranchY + branchSpawnHeight, 0);
 
-        if (LastBranchY == branchesPerLevel[0])
-            level = 2;
-        else if (LastBranchY == branchesPerLevel[1])
-            level = 3;
-
-        GameObject currentBranch; 
-        switch (level)
+        spawnedBranch = Instantiate(branchPrefabObj, SpawnPosition, Quaternion.identity);
+    }
+    public void OnLevelChange(Levels newLevel)
+    {
+        switch (newLevel)
         {
-            case 1:
-              currentBranch =  Instantiate(branchprefabs[0], SpawnPosition, Quaternion.identity);
-                
-                break;
-            case 2:
-                currentBranch = Instantiate(branchprefabs[Random.Range(0, branchprefabs.Length)], SpawnPosition, Quaternion.identity);
+            case Levels.Level1:
+                branchToSpawn = branchprefabs[0];
 
                 break;
-            case 3:
-                currentBranch = Instantiate(branchprefabs[Random.Range(0, branchprefabs.Length)], SpawnPosition, Quaternion.identity);
-                //spawn snake
-                break;
-                default:
-                currentBranch = null;
-                break;
+            case Levels.Level2:
+                branchToSpawn = branchprefabs[Random.Range(0, branchprefabs.Length)];
 
-               
+                break;
+            case Levels.Level3:
+                branchToSpawn = branchprefabs[Random.Range(0, branchprefabs.Length)];
+
+                break;
+            default:
+                break;
         }
-        //Instantiate(branchprefab, SpawnPosition, Quaternion.identity);
-        LastBranchY += branchSpawnInterval;               
-
-        // Alternate between left and right
-        spawnLeft = !spawnLeft;
-        if(spawnLeft && currentBranch != null) 
-        currentBranch.GetComponent<SpriteRenderer>().flipX = true;
     }
 }

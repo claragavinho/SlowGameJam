@@ -13,14 +13,24 @@ public class BuffSpawner : MonoBehaviour
     public float rightX = 2f;
 
     public float LastBuffY;
+
+    private bool canSpawn;
     private void Update()
     {
         if (Camera.main.transform.position.y + spawnHeight > LastBuffY)
         {
-            SpawnBuff();
+            canSpawn = Random.Range(0,100) < 10;
+
+            BuffSpawnCheck();
+            SpawnBuff(); 
         }
     }
     public void SpawnBuff()
+    {
+        LastBuffY += spawnInterval;
+        spawnLeft = !spawnLeft;
+    }
+    public void BuffSpawnCheck()
     {
         float xpos;
         if (spawnLeft)
@@ -32,9 +42,8 @@ public class BuffSpawner : MonoBehaviour
             xpos = rightX;
         }
         Vector3 buffSpawnPosition = new Vector3(xpos, LastBuffY + spawnHeight, 0);
-        Instantiate(buffprefabs[0], buffSpawnPosition, Quaternion.identity);
 
-        LastBuffY += spawnInterval;
-        spawnLeft = !spawnLeft;
+        if (canSpawn)
+            Instantiate(buffprefabs[0], buffSpawnPosition, Quaternion.identity);
     }
 }
